@@ -6,15 +6,24 @@ import HelloWorld from './Helloworld'
 import HeaderComponent from './Component/HeaderComponent'
 import FooterComponent from './Component/FooterComponent'
 import AccountComponent from './Component/AccountComponent'
+import ListAccountCompinent from './Component/ListAccountCompinent'
+import { BrowserRouter, Routes,Route} from 'react-router-dom'
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
-    <HeaderComponent />
-        <AccountComponent />
-    <FooterComponent />
+    <BrowserRouter>
+        <HeaderComponent />
+        <Routes>
+          {/* http://localhost:8080 */}
+          <Route path='/' element={<ListAccountCompinent />}></Route>
+          {/* http://localhost:8080/add-account */}
+          <Route path='/add-account' element={<AccountComponent />}></Route>
+        </Routes>
+        <FooterComponent />
+    </BrowserRouter>
     </>
   )
 }

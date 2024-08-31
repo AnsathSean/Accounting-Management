@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { addAccount } from '../Service/AccountService'
 
 const AccountComponent = () => {
 
@@ -12,6 +13,13 @@ const AccountComponent = () => {
         const account = {name,category,amount,expensed}
         console.log(account)
         //將資料傳給後端
+        addAccount(account).then((response)=>{
+          console.log(response.data)
+        }).catch(error =>{
+          console.log(error)
+        }
+      )
+
 
 
     }
@@ -21,7 +29,7 @@ const AccountComponent = () => {
         <br></br>
         <div className='card col-md-6 offest-md-3 offset-md-3'>
         <br></br>
-        <h2 className='text-center'>Add Account</h2>
+        <h2 className='text-center'>add Account</h2>
         <div className='card-body'>
               <form>
 
