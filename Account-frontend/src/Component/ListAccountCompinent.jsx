@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllAccounts } from '../Service/AccountService'
+import { deleteAccount, getAllAccounts } from '../Service/AccountService'
 import {useNavigate} from 'react-router-dom'
 
 function ListAccountCompinent() {
@@ -26,10 +26,17 @@ function ListAccountCompinent() {
 
     function updateAccount(id){
         // 更新Account
+        console.log(id)
+        navigate(`/update-account/${id}`)
     }
 
     function deletedAccount(id){
         //刪除Account
+        deleteAccount(id).then(()=>{
+            listAccounts()
+        }).catch(error =>{
+            console.log(error)
+        })
     }
 
   return (

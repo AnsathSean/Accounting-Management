@@ -21,6 +21,8 @@ function App() {
           <Route path='/' element={<ListAccountCompinent />}></Route>
           {/* http://localhost:8080/add-account */}
           <Route path='/add-account' element={<AccountComponent />}></Route>
+          {/* http://localhost:8080/add-account/1 */}
+          <Route path='/update-account/:id' element={<AccountComponent />}></Route>
         </Routes>
         <FooterComponent />
     </BrowserRouter>

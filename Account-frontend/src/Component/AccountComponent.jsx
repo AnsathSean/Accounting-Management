@@ -1,35 +1,74 @@
-import React, { useState } from 'react'
-import { addAccount } from '../Service/AccountService'
+import { useState , useEffect } from 'react'
+import { addAccount, getAccount, updateAccount } from '../Service/AccountService'
+import { useNavigate,useParams } from 'react-router-dom'
 
 const AccountComponent = () => {
 
     const [name, setName] = useState('')
-    const [category,SetCategory] = useState('')
+    const [category,setCategory] = useState('')
     const [amount,setAmount] = useState('')
     const [expensed,setExpensed] = useState(false)
 
+    const navigate = useNavigate()
+    const {id} = useParams()
+
+    useEffect(()=>{
+      
+      if(id){
+        getAccount(id).then((res)=>{
+          //console.log("This is the res"+res.data)
+          setName(res.data.name)
+          setCategory(res.data.category)
+          setAmount(res.data.amount)
+          setExpensed(res.data.expensed)
+        }).catch(error =>{
+          console.error(error)
+        })
+      }
+    },[id])
+
+
     function saveAccount(e){
         e.preventDefault()
-        const account = {name,category,amount,expensed}
-        console.log(account)
-        //將資料傳給後端
-        addAccount(account).then((response)=>{
-          console.log(response.data)
-        }).catch(error =>{
-          console.log(error)
+
+        if(id){
+          const account = {id,name,category,amount,expensed}
+          updateAccount(id,account).then((res)=>
+            navigate('/')
+          ).catch(error =>{
+           console.log(error)
+          })
+
+        }else{
+          const account = {name,category,amount,expensed}
+          console.log(account)
+          //將資料傳給後端
+          navigate('/')
+          addAccount(account).then((response)=>{
+            console.log(response.data)
+            }).catch(error =>{
+            console.log(error)
+          })
         }
-      )
+      }
+
+      function pageTitle(){
+        if(id){
+          return <h2 className='text-center' >Update Account</h2>
+        }else{
+          return <h2 className='text-center'>Add Todo</h2>
+        }
+      }
 
 
-
-    }
+    
 
   return (
     <div className='container'>
         <br></br>
         <div className='card col-md-6 offest-md-3 offset-md-3'>
         <br></br>
-        <h2 className='text-center'>add Account</h2>
+        {pageTitle()}
         <div className='card-body'>
               <form>
 
@@ -50,7 +89,7 @@ const AccountComponent = () => {
                             className='form-control'
                             placeholder='Enter Account Category'
                             value={(category)}
-                           onChange={(e)=>SetCategory(e.target.value)}  
+                           onChange={(e)=>setCategory(e.target.value)}  
                        ></input>
                 </div>
                 <div className='form-group mb-2 text-center'>
