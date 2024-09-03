@@ -43,12 +43,12 @@ const AccountComponent = () => {
           const account = {name,category,amount,expensed}
           console.log(account)
           //將資料傳給後端
-          navigate('/')
           addAccount(account).then((response)=>{
             console.log(response.data)
             }).catch(error =>{
             console.log(error)
           })
+          navigate('/')
         }
       }
 
