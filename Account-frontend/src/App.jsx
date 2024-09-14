@@ -11,6 +11,7 @@ import { BrowserRouter, Routes,Route} from 'react-router-dom'
 import SortAccountComponent from './Component/SortAccountComponent'
 import WeeklyAccountComponent from './Component/WeeklyAccountComponent'
 import ChartComponent from './Component/ChartComponent'
+import LoginComponent from './Component/LoginComponent'
 
 
 function App() {
@@ -22,13 +23,13 @@ function App() {
         <HeaderComponent />
         <Routes>
         {/* http://localhost:8080/ */}
-        <Route path='/' element={<ListAccountComponent />}></Route>
+        <Route path='/' element={<LoginComponent />}></Route>
           {/* http://localhost:8080/chart-account */}
           <Route path='/chart-account' element={<ChartComponent />}></Route>
           {/* http://localhost:8080/weekly-account' */}
           <Route path='/week-account' element={<WeeklyAccountComponent />}></Route>
           {/* http://localhost:8080/list-account */}
-          <Route path='/lsit-account' element={<ListAccountComponent />}></Route>
+          <Route path='/list-account' element={<ListAccountComponent />}></Route>
           {/* http://localhost:8080/add-account */}
           <Route path='/add-account' element={<AccountComponent />}></Route>
           {/* http://localhost:8080/add-account/1 */}

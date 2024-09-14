@@ -16,7 +16,7 @@ const HeaderComponent = () => {
             <div className='collapse navbar-collapse'>
             <ul className='navbar-nav'>
                 <li className='nav-item'>
-                <NavLink to="/lsit-account" className="nav-link">Account List</NavLink>
+                <NavLink to="/list-account" className="nav-link">Account List</NavLink>
                 </li>
                 <li className='nav-item'>
                 <NavLink to="/sort-account" className="nav-link">Sort Account</NavLink>
